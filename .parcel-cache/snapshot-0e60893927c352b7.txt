@@ -1,0 +1,10 @@
+9
+57C:\Users\Uzair Ghaffar\desktop\campus_events\package.json134209831068171587 0
+55C:\Users\Uzair Ghaffar\desktop\campus_events\.gitignore134209840487247005 0
+62C:\Users\Uzair Ghaffar\desktop\campus_events\src\packages.html134209833615254726 0
+48C:\Users\Uzair Ghaffar\desktop\campus_events\src134209842708666688 1
+61C:\Users\Uzair Ghaffar\desktop\campus_events\src\contact.html134209833851216030 0
+59C:\Users\Uzair Ghaffar\desktop\campus_events\src\index.html134209842787839292 0
+65C:\Users\Uzair Ghaffar\desktop\campus_events\src\destination.html134209833440743916 0
+61C:\Users\Uzair Ghaffar\desktop\campus_events\src\gallery.html134209833743400223 0
+59C:\Users\Uzair Ghaffar\desktop\campus_events\src\styles.css134209842909541031 0
