@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Explore Pakistan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sand:     #f5efe6;
+      --clay:     #c9956a;
+      --forest:   #2d4a3e;
+      --midnight: #1a2e27;
+      --gold:     #e8b84b;
+      --cream:    #faf6f0;
+      --muted:    #8a9e97;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--midnight);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(26, 46, 39, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(232, 184, 75, 0.2);
+    }
+
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 55vh;
+      background: linear-gradient(160deg, var(--midnight) 0%, var(--forest) 60%, #3a6b58 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 80%, rgba(201,149,106,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 20%, rgba(232,184,75,0.1) 0%, transparent 55%);
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(232,184,75,0.4);
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      position: relative;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      position: relative;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero h1 span { color: var(--clay); font-style: italic; }
+
+    .hero p {
+      margin-top: 20px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 520px;
+      line-height: 1.7;
+      position: relative;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    /* ── FILTER BAR ── */
+    .filter-section {
+      padding: 40px 48px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 8px;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1.5px solid #d0cfc9;
+      border-radius: 24px;
+      padding: 8px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--midnight);
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+
+    .filter-btn.active {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: #fff;
+    }
+
+    /* ── GALLERY GRID ── */
+    .gallery-section {
+      padding: 40px 48px 80px;
+    }
+
+    .gallery-grid {
+      columns: 3 280px;
+      column-gap: 20px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      display: block;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .gallery-item:nth-child(1) { animation-delay: 0.05s; }
+    .gallery-item:nth-child(2) { animation-delay: 0.1s; }
+    .gallery-item:nth-child(3) { animation-delay: 0.15s; }
+    .gallery-item:nth-child(4) { animation-delay: 0.2s; }
+    .gallery-item:nth-child(5) { animation-delay: 0.25s; }
+    .gallery-item:nth-child(6) { animation-delay: 0.3s; }
+    .gallery-item:nth-child(7) { animation-delay: 0.35s; }
+    .gallery-item:nth-child(8) { animation-delay: 0.4s; }
+    .gallery-item:nth-child(9) { animation-delay: 0.45s; }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,46,39,0.85) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .gallery-overlay span {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .gallery-overlay .zoom-icon {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(6px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(10, 18, 15, 0.96);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+      animation: scaleIn 0.3s ease;
+    }
+
+    .lightbox-inner img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .lightbox-caption {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .lightbox-caption h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    .lightbox-caption p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-top: 6px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -14px; right: -14px;
+      width: 40px; height: 40px;
+      background: var(--clay);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .lightbox-close:hover { background: #b07a50; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--forest);
+      padding: 48px 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+
+    .stat-item {}
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: 8px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--midnight);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer p { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    footer .footer-brand {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .filter-section, .gallery-section { padding-left: 20px; padding-right: 20px; }
+      .gallery-grid { columns: 2 160px; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 36px 24px; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-brand">🌍 Explore Pakistan</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="destination.html">Destinations</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">📸 Visual Journey</div>
+    <h1>Moments from the<br><span>Wild & Wonderful</span></h1>
+    <p>A curated collection of breathtaking scenery, vibrant culture, and unforgettable travel memories from across Pakistan.</p>
+  </section>
+
+  <!-- FILTER -->
+  <div class="filter-section">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all" onclick="filterGallery(this, 'all')">All Photos</button>
+    <button class="filter-btn" data-filter="mountains" onclick="filterGallery(this, 'mountains')">Mountains</button>
+    <button class="filter-btn" data-filter="heritage" onclick="filterGallery(this, 'heritage')">Heritage</button>
+    <button class="filter-btn" data-filter="nature" onclick="filterGallery(this, 'nature')">Nature</button>
+    <button class="filter-btn" data-filter="culture" onclick="filterGallery(this, 'culture')">Culture</button>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="gallery-section">
+    <div class="gallery-grid" id="galleryGrid">
+
+      <div class="gallery-item" data-category="mountains" onclick="openLightbox('https://picsum.photos/seed/hunza/800/600', 'Hunza Valley', 'Gilgit-Baltistan — The crown jewel of Pakistan\'s north')">
+        <img src="https://picsum.photos/seed/hunza/600/450" alt="Hunza Valley" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="zoom-icon">⛶</span>
+          <h3>Hunza Valley</h3>
+          <span>Mountains · Gilgit-Baltistan</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="heritage" onclick="openLightbox('https://picsum.photos/seed/lahore/800/600', 'Lahore Fort', 'Punjab — UNESCO World Heritage Site since 1981')">
+        <img src="https://picsum.photos/seed/lahore/600/700" alt="Lahore Fort" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="zoom-icon">⛶</span>
+          <h3>Lahore Fort</h3>
+          <span>Heritage · Punjab</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="nature" onclick="openLightbox('https://picsum.photos/seed/swat/800/600', 'Swat Valley', 'KPK — The Switzerland of Pakistan')">
+        <img src="https://picsum.photos/seed/swat/600/400" alt="Swat Valley" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="zoom-icon">⛶</span>
+          <h3>Swat Valley</h3>
+          <span>Nature · KPK</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="culture" onclick="openLightbox('https://picsum.photos/seed/mohenjo/800/600', 'Mohenjo-daro', 'Sindh — Ancient Indus Valley civilization ruins')">
+        <img src="https://picsum.photos/seed/mohenjo/600/500" alt="Mohenjo-daro" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="zoom-icon">⛶</span>
+          <h3>Mohenjo-daro</h3>
+          <span>Culture · Sindh</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="mountains" onclick="openLightbox('https://picsum.photos/seed/k2/800/600', 'K2 Base Camp', 'Gilgit-Baltistan — World\'s second highest peak')">
+        <img src="https://picsum.photos/seed/k2/600/750" alt="K2" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="zoom-icon">⛶</span>
+          <h3>K2 Base Camp</h3>
+          <span>Mountains · Gilgit-Baltistan</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="nature" onclick="openLightbox('https://picsum.photos/seed/neelum/800/600', 'Neelum Valley', 'AJK — Emerald rivers and dense pine forests')">
+        <img src="https://picsum.photos/seed/neelum/600/420" alt="Neelum Valley" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="zoom-icon">⛶</span>
+          <h3>Neelum Valley</h3>
+          <span>Nature · AJK</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="heritage" onclick="openLightbox('https://picsum.photos/seed/badshahi/800/600', 'Badshahi Mosque', 'Lahore — One of the world\'s largest mosques')">
+        <img src="https://picsum.photos/seed/badshahi/600/680" alt="Badshahi Mosque" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="zoom-icon">⛶</span>
+          <h3>Badshahi Mosque</h3>
+          <span>Heritage · Lahore</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="culture" onclick="openLightbox('https://picsum.photos/seed/festival/800/600', 'Lok Mela Festival', 'Islamabad — Colors of Pakistani folk art and crafts')">
+        <img src="https://picsum.photos/seed/festival/600/460" alt="Lok Mela Festival" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="zoom-icon">⛶</span>
+          <h3>Lok Mela Festival</h3>
+          <span>Culture · Islamabad</span>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="mountains" onclick="openLightbox('https://picsum.photos/seed/fairy/800/600', 'Fairy Meadows', 'Gilgit-Baltistan — Meadows with a view of Nanga Parbat')">
+        <img src="https://picsum.photos/seed/fairy/600/520" alt="Fairy Meadows" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="zoom-icon">⛶</span>
+          <h3>Fairy Meadows</h3>
+          <span>Mountains · Gilgit-Baltistan</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number">120+</div>
+      <div class="stat-label">Photos Captured</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">18</div>
+      <div class="stat-label">Locations Covered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">7</div>
+      <div class="stat-label">Provinces Explored</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5K+</div>
+      <div class="stat-label">Happy Visitors</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">🌍 Explore Pakistan</span>
+    <p>Gallery page developed by Member 3 — DevOps Assignment 02, Spring 2026</p>
+    <p>© 2026 Explore Pakistan. All rights reserved.</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightboxImg" src="" alt="" />
+      <div class="lightbox-caption">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openLightbox(src, title, desc) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxTitle').textContent = title;
+      document.getElementById('lightboxDesc').textContent = desc;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+    });
+
+    function filterGallery(btn, category) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        const match = category === 'all' || item.dataset.category === category;
+        item.style.display = match ? 'block' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>
