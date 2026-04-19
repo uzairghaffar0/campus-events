@@ -1,0 +1,16 @@
+15
+51C:\Users\Uzair Ghaffar\desktop\campus_events\styles134209922174796973 1
+58C:\Users\Uzair Ghaffar\desktop\campus_events\.dockerignore134209927014759758 0
+57C:\Users\Uzair Ghaffar\desktop\campus_events\package.json134209923449592095 0
+55C:\Users\Uzair Ghaffar\desktop\campus_events\.gitignore134209840487247005 0
+48C:\Users\Uzair Ghaffar\desktop\campus_events\src134209902094261409 1
+49C:\Users\Uzair Ghaffar\desktop\campus_events\dist134209923564045155 1
+55C:\Users\Uzair Ghaffar\desktop\campus_events\Dockerfile134209925761101543 0
+61C:\Users\Uzair Ghaffar\desktop\campus_events\styles\style.css134209842909541031 0
+61C:\Users\Uzair Ghaffar\desktop\campus_events\src\contact.html134209833851216030 0
+65C:\Users\Uzair Ghaffar\desktop\campus_events\src\destination.html134209833440743916 0
+61C:\Users\Uzair Ghaffar\desktop\campus_events\src\gallery.html134209833743400223 0
+59C:\Users\Uzair Ghaffar\desktop\campus_events\src\index.html134209842787839292 0
+62C:\Users\Uzair Ghaffar\desktop\campus_events\src\packages.html134209833615254726 0
+76C:\Users\Uzair Ghaffar\desktop\campus_events\dist\campus_events.56299abc.css134209923563965160 0
+60C:\Users\Uzair Ghaffar\desktop\campus_events\dist\index.html134209923564005157 0
