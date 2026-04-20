@@ -1,448 +1,343 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Travel Packages — Explore Pakistan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles/style.css" />
-  <style>
-    :root {
-      --green-dark:  #1b3a2f;
-      --green-mid:   #2d5a47;
-      --green-light: #3d7a5f;
-      --gold:        #d4a843;
-      --gold-light:  #f0c85a;
-      --sand:        #f5efe4;
-      --cream:       #faf7f2;
-      --white:       #ffffff;
-      --text-dark:   #1a1a1a;
-      --text-mid:    #444;
-      --text-muted:  #888;
-    }
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="Browse sample campus event packages with schedules, dates, and event details."
+		/>
+		<title>Campus Events | Packages</title>
+		<link rel="stylesheet" href="../styles/style.css" />
+	</head>
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); }
+	<body>
+		<a class="skip-link" href="#main">Skip to main content</a>
 
-    /* ── NAV ── */
-    nav {
-      background: var(--green-dark);
-      padding: 0 48px;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px; position: sticky; top: 0; z-index: 999;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-    }
-    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--gold); text-decoration: none; letter-spacing: 0.03em; }
-    .nav-links { list-style: none; display: flex; gap: 28px; }
-    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: all 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); border-bottom-color: var(--gold); }
+		<header class="site-header" role="banner">
+			<div class="container site-header__inner">
+				<a
+					class="brand"
+					href="./index.html"
+					aria-label="Campus Events home"
+				>
+					<span class="brand__mark" aria-hidden="true">CE</span>
+					<span class="brand__text">Campus Events</span>
+				</a>
 
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 55%, #4a8a6a 100%);
-      padding: 90px 48px 70px; text-align: center; color: white; position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(212,168,67,0.12) 0%, transparent 65%);
-    }
-    .hero-badge {
-      display: inline-block; font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
-      border: 1px solid rgba(212,168,67,0.45); padding: 5px 18px;
-      border-radius: 20px; margin-bottom: 22px; position: relative;
-    }
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 6vw, 4.8rem); font-weight: 700;
-      line-height: 1.05; margin-bottom: 18px; position: relative;
-    }
-    .hero h1 em { color: var(--gold); font-style: italic; }
-    .hero p { font-size: 1.05rem; color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 32px; line-height: 1.7; position: relative; }
-    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
-    .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: all 0.22s; }
-    .btn-gold { background: var(--gold); color: var(--green-dark); }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-ghost { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.5); }
-    .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+				<nav class="nav" aria-label="Primary">
+					<button
+						class="nav__toggle"
+						type="button"
+						aria-controls="primary-nav"
+						aria-expanded="false"
+						data-nav-toggle
+					>
+						<span class="nav__toggle-label">Menu</span>
+					</button>
 
-    /* ── STATS STRIP ── */
-    .stats-strip {
-      background: var(--gold); display: grid; grid-template-columns: repeat(4,1fr);
-      text-align: center; padding: 20px 48px;
-    }
-    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--green-dark); line-height: 1; }
-    .stat-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(27,58,47,0.75); margin-top: 3px; }
+					<ul class="nav__list" id="primary-nav">
+						<li class="nav__item">
+							<a class="nav__link" href="./index.html">Home</a>
+						</li>
+						<li class="nav__item">
+							<a class="nav__link" href="./destination.html"
+								>Destinations</a
+							>
+						</li>
+						<li class="nav__item">
+							<a
+								class="nav__link nav__link--active"
+								href="./packages.html"
+								aria-current="page"
+								>Packages</a
+							>
+						</li>
+						<li class="nav__item">
+							<a class="nav__link" href="./gallery.html"
+								>Gallery</a
+							>
+						</li>
+						<li class="nav__item">
+							<a class="nav__link" href="./contact.html"
+								>Contact</a
+							>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
 
-    /* ── FILTER TABS ── */
-    .filter-section { padding: 48px 48px 0; }
-    .filter-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
-    .filter-section p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 28px; }
-    .filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
-    .ftab { background: transparent; border: 1.5px solid #d0cfc9; border-radius: 24px; padding: 8px 20px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; color: var(--text-dark); cursor: pointer; transition: all 0.2s; }
-    .ftab:hover { border-color: var(--green-mid); color: var(--green-mid); }
-    .ftab.active { background: var(--green-dark); border-color: var(--green-dark); color: white; }
+		<main id="main" class="main" role="main">
+			<section class="hero" aria-labelledby="hero-title">
+				<div class="container hero__inner">
+					<div class="hero__content">
+						<p class="hero__eyebrow">Event packages</p>
+						<h1 class="hero__title" id="hero-title">
+							Sample events with dates and details
+						</h1>
+						<p class="hero__subtitle">
+							Explore ready-to-go sample events for this semester.
+							Each package includes a date, venue, and quick overview to
+							help students plan ahead.
+						</p>
 
-    /* ── PACKAGES GRID ── */
-    .packages-section { padding: 0 48px 80px; }
-    .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+						<div
+							class="hero__actions"
+							role="group"
+							aria-label="Primary actions"
+						>
+							<a class="button button--primary" href="#events"
+								>View all packages</a
+							>
+							<a class="button button--ghost" href="./contact.html"
+								>Book a package</a
+							>
+						</div>
 
-    /* ── PACKAGE CARD ── */
-    .pkg-card {
-      background: var(--white); border-radius: 14px; overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08); display: flex; flex-direction: column;
-      transition: transform 0.28s, box-shadow 0.28s;
-      animation: fadeUp 0.5s ease both;
-    }
-    .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.14); }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-    .pkg-card:nth-child(1){ animation-delay:.05s } .pkg-card:nth-child(2){ animation-delay:.1s }
-    .pkg-card:nth-child(3){ animation-delay:.15s } .pkg-card:nth-child(4){ animation-delay:.2s }
-    .pkg-card:nth-child(5){ animation-delay:.25s }
+						<dl class="stats" aria-label="Package highlights">
+							<div class="stats__item">
+								<dt class="stats__label">Available packages</dt>
+								<dd class="stats__value">5</dd>
+							</div>
+							<div class="stats__item">
+								<dt class="stats__label">Event categories</dt>
+								<dd class="stats__value">4</dd>
+							</div>
+							<div class="stats__item">
+								<dt class="stats__label">Avg. duration</dt>
+								<dd class="stats__value">3 hrs</dd>
+							</div>
+						</dl>
+					</div>
 
-    .pkg-header { padding: 28px 24px 20px; position: relative; }
-    .pkg-header.mountains { background: linear-gradient(135deg, #1b3a2f, #2d5a47); }
-    .pkg-header.heritage  { background: linear-gradient(135deg, #3d2a0a, #6b4a18); }
-    .pkg-header.luxury    { background: linear-gradient(135deg, #1a1a2e, #2d2d5a); }
-    .pkg-header.adventure { background: linear-gradient(135deg, #0a2e2e, #1a5a5a); }
-    .pkg-header.family    { background: linear-gradient(135deg, #2e0a1a, #5a1a2d); }
+					<aside class="hero__panel" aria-label="Package note">
+						<h2 class="card__title">Planning note</h2>
+						<p class="helper">
+							These are sample events for demonstration. Dates and venues
+							can be customized based on faculty schedules and student
+							club availability.
+						</p>
+					</aside>
+				</div>
+			</section>
 
-    .pkg-badge {
-      position: absolute; top: 16px; right: 16px;
-      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 4px 12px; border-radius: 12px;
-    }
-    .badge-popular  { background: rgba(212,168,67,0.9); color: #1b3a2f; }
-    .badge-budget   { background: rgba(61,200,130,0.9); color: #0a2e1a; }
-    .badge-premium  { background: rgba(180,130,255,0.9); color: #1a0a2e; }
-    .badge-thrill   { background: rgba(70,180,220,0.9); color: #0a1a2e; }
-    .badge-family   { background: rgba(255,130,160,0.9); color: #2e0a1a; }
+			<section class="section" id="events" aria-labelledby="events-title">
+				<div class="container">
+					<div class="section__header">
+						<h2 class="section__title" id="events-title">
+							Event packages list
+						</h2>
+						<p class="section__subtitle">
+							Choose from these sample events with clear dates and details.
+						</p>
+					</div>
 
-    .pkg-icon { font-size: 2.8rem; margin-bottom: 12px; display: block; }
-    .pkg-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 4px; }
-    .pkg-header .pkg-dates { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 14px; }
-    .pkg-price { display: flex; align-items: baseline; gap: 6px; }
-    .pkg-price .amount { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--gold); }
-    .pkg-price .per { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+					<div class="grid grid--3">
+						<article class="event-card" aria-label="AI Workshop event">
+							<header class="event-card__header">
+								<p class="event-card__meta">
+									<span class="pill pill--blue">Workshop</span>
+									<span class="event-card__time"
+										>Apr 18, 2026 • 10:00 AM</span
+									>
+								</p>
+								<h3 class="event-card__title">
+									AI Tools for Students
+								</h3>
+							</header>
+							<p class="event-card__body">
+								A hands-on training session on productivity, research, and
+								project workflows using modern AI tools.
+							</p>
+							<footer class="event-card__footer">
+								<span class="event-card__place">Innovation Lab</span>
+								<a class="event-card__link" href="./contact.html"
+									>Request package</a
+								>
+							</footer>
+						</article>
 
-    .pkg-body { padding: 20px 24px; flex: 1; }
-    .pkg-body .duration { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; color: var(--green-mid); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.08em; }
-    .pkg-details { list-style: none; margin-bottom: 0; }
-    .pkg-details li {
-      padding: 9px 0; border-bottom: 1px solid var(--sand);
-      font-size: 0.875rem; color: var(--text-mid); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5;
-    }
-    .pkg-details li:last-child { border-bottom: none; }
-    .pkg-details .di { flex-shrink: 0; font-size: 1rem; }
+						<article
+							class="event-card"
+							aria-label="Startup Pitch Arena event"
+						>
+							<header class="event-card__header">
+								<p class="event-card__meta">
+									<span class="pill pill--purple">Business</span>
+									<span class="event-card__time"
+										>Apr 24, 2026 • 2:30 PM</span
+									>
+								</p>
+								<h3 class="event-card__title">
+									Startup Pitch Arena
+								</h3>
+							</header>
+							<p class="event-card__body">
+								Student teams pitch ideas to a faculty and alumni panel,
+								followed by live mentoring and networking.
+							</p>
+							<footer class="event-card__footer">
+								<span class="event-card__place">Seminar Hall B</span>
+								<a class="event-card__link" href="./contact.html"
+									>Request package</a
+								>
+							</footer>
+						</article>
 
-    .pkg-footer { padding: 16px 24px 20px; border-top: 1px solid var(--sand); }
-    .book-btn {
-      display: block; width: 100%; text-align: center;
-      background: var(--green-dark); color: white; padding: 13px;
-      border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
-      font-weight: 600; text-decoration: none; transition: background 0.2s, transform 0.2s;
-    }
-    .book-btn:hover { background: var(--green-mid); transform: translateY(-1px); }
+						<article
+							class="event-card"
+							aria-label="Sports Challenge Day event"
+						>
+							<header class="event-card__header">
+								<p class="event-card__meta">
+									<span class="pill pill--green">Sports</span>
+									<span class="event-card__time"
+										>May 2, 2026 • 9:00 AM</span
+									>
+								</p>
+								<h3 class="event-card__title">
+									Sports Challenge Day
+								</h3>
+							</header>
+							<p class="event-card__body">
+								Inter-department futsal and basketball fixtures with a
+								closing ceremony for winning teams.
+							</p>
+							<footer class="event-card__footer">
+								<span class="event-card__place">Main Sports Ground</span>
+								<a class="event-card__link" href="./contact.html"
+									>Request package</a
+								>
+							</footer>
+						</article>
 
-    /* ── HOW TO BOOK ── */
-    .how-section { background: var(--green-dark); padding: 64px 48px; }
-    .how-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: white; margin-bottom: 8px; }
-    .how-section p { font-size: 0.95rem; color: rgba(255,255,255,0.6); margin-bottom: 48px; }
-    .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 32px; }
-    .how-step { text-align: center; }
-    .how-num {
-      width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700;
-      color: var(--gold); margin: 0 auto 16px;
-    }
-    .how-step h4 { font-size: 1rem; font-weight: 600; color: white; margin-bottom: 8px; }
-    .how-step p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0; }
+						<article
+							class="event-card"
+							aria-label="Cultural Evening event"
+						>
+							<header class="event-card__header">
+								<p class="event-card__meta">
+									<span class="pill pill--purple">Cultural</span>
+									<span class="event-card__time"
+										>May 9, 2026 • 5:00 PM</span
+									>
+								</p>
+								<h3 class="event-card__title">Cultural Evening</h3>
+							</header>
+							<p class="event-card__body">
+								Music, drama, and spoken-word performances showcasing
+								student talent from different faculties.
+							</p>
+							<footer class="event-card__footer">
+								<span class="event-card__place"
+									>Auditorium Complex</span
+								>
+								<a class="event-card__link" href="./contact.html"
+									>Request package</a
+								>
+							</footer>
+						</article>
 
-    /* ── INCLUSIONS BANNER ── */
-    .inclusions { background: var(--sand); padding: 48px; }
-    .inclusions h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; }
-    .inclusions p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 32px; }
-    .inc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 20px; }
-    .inc-item { background: white; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
-    .inc-icon { font-size: 1.8rem; margin-bottom: 10px; }
-    .inc-item h4 { font-size: 0.9rem; font-weight: 600; color: var(--green-dark); margin-bottom: 4px; }
-    .inc-item p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+						<article
+							class="event-card"
+							aria-label="Community Service Drive event"
+						>
+							<header class="event-card__header">
+								<p class="event-card__meta">
+									<span class="pill pill--green">Community</span>
+									<span class="event-card__time"
+										>May 16, 2026 • 8:30 AM</span
+									>
+								</p>
+								<h3 class="event-card__title">
+									Community Service Drive
+								</h3>
+							</header>
+							<p class="event-card__body">
+								A volunteer package focused on clean-up, donation
+								collection, and outreach in nearby communities.
+							</p>
+							<footer class="event-card__footer">
+								<span class="event-card__place">City Outreach Hub</span>
+								<a class="event-card__link" href="./contact.html"
+									>Request package</a
+								>
+							</footer>
+						</article>
+					</div>
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--green-dark); padding: 32px 48px;
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-    }
-    footer .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--gold); }
-    footer p { color: rgba(255,255,255,0.45); font-size: 0.85rem; }
+					<div class="cta">
+						<div class="cta__content">
+							<h3 class="cta__title">Need a custom package?</h3>
+							<p class="cta__text">
+								Share your event goals and expected audience size, and our
+								team will build a tailored campus event plan.
+							</p>
+						</div>
+						<a class="button button--primary" href="./contact.html"
+							>Talk to organizers</a
+						>
+					</div>
+				</div>
+			</section>
+		</main>
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:768px){
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hero { padding: 70px 20px 50px; }
-      .stats-strip { grid-template-columns: repeat(2,1fr); padding: 20px; }
-      .filter-section, .packages-section { padding-left: 20px; padding-right: 20px; }
-      .how-section, .inclusions { padding: 40px 20px; }
-      footer { padding: 24px 20px; flex-direction: column; text-align: center; }
-    }
-  </style>
-</head>
-<body>
+		<footer class="site-footer" role="contentinfo">
+			<div class="container site-footer__inner">
+				<p class="site-footer__brand">
+					<span class="brand__mark" aria-hidden="true">CE</span>
+					<span class="site-footer__name">Campus Events</span>
+				</p>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-logo">🌍 Explore Pakistan</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="destination.html">Destinations</a></li>
-      <li><a href="packages.html" class="active">Packages</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+				<ul class="footer-links" aria-label="Footer">
+					<li class="footer-links__item">
+						<a class="footer-links__link" href="./gallery.html"
+							>Gallery</a
+						>
+					</li>
+					<li class="footer-links__item">
+						<a class="footer-links__link" href="./packages.html"
+							>Packages</a
+						>
+					</li>
+					<li class="footer-links__item">
+						<a class="footer-links__link" href="./contact.html"
+							>Contact</a
+						>
+					</li>
+				</ul>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-badge">📦 Curated Travel Packages</div>
-    <h1>Your Perfect<br><em>Pakistan Adventure</em><br>Awaits</h1>
-    <p>Five handcrafted packages for every traveler — from budget explorers to luxury seekers. All-inclusive, fully guided, unforgettable.</p>
-    <div class="hero-btns">
-      <a href="#packages" class="btn btn-gold">Browse Packages</a>
-      <a href="contact.html" class="btn btn-ghost">Custom Package</a>
-    </div>
-  </div>
+				<p class="site-footer__copy">
+					© <span id="year">2026</span> Campus Events. All rights
+					reserved.
+				</p>
+			</div>
+		</footer>
 
-  <!-- STATS STRIP -->
-  <div class="stats-strip">
-    <div><div class="stat-num">5</div><div class="stat-label">Packages</div></div>
-    <div><div class="stat-num">18+</div><div class="stat-label">Destinations</div></div>
-    <div><div class="stat-num">5K+</div><div class="stat-label">Happy Travelers</div></div>
-    <div><div class="stat-num">100%</div><div class="stat-label">Guided Tours</div></div>
-  </div>
+		<script>
+			(function () {
+				const toggle = document.querySelector("[data-nav-toggle]");
+				const nav = document.getElementById("primary-nav");
 
-  <!-- FILTER -->
-  <div class="filter-section">
-    <h2>Our Travel Packages</h2>
-    <p>All packages include accommodation, certified guide, and transportation</p>
-    <div class="filter-tabs">
-      <button class="ftab active" onclick="filterPkg(this,'all')">All Packages</button>
-      <button class="ftab" onclick="filterPkg(this,'mountains')">Mountains</button>
-      <button class="ftab" onclick="filterPkg(this,'heritage')">Heritage</button>
-      <button class="ftab" onclick="filterPkg(this,'luxury')">Luxury</button>
-      <button class="ftab" onclick="filterPkg(this,'adventure')">Adventure</button>
-      <button class="ftab" onclick="filterPkg(this,'family')">Family</button>
-    </div>
-  </div>
+				if (!toggle || !nav) return;
 
-  <!-- PACKAGES GRID -->
-  <div class="packages-section" id="packages">
-    <div class="pkg-grid" id="pkgGrid">
+				const setExpanded = (expanded) => {
+					toggle.setAttribute("aria-expanded", String(expanded));
+					nav.dataset.open = String(expanded);
+				};
 
-      <!-- Package 1: Northern Peaks -->
-      <div class="pkg-card" data-cat="mountains">
-        <div class="pkg-header mountains">
-          <span class="pkg-badge badge-popular">⭐ Most Popular</span>
-          <span class="pkg-icon">🏔️</span>
-          <h3>Northern Peaks Explorer</h3>
-          <div class="pkg-dates">📅 15 Apr – 25 Apr 2026</div>
-          <div class="pkg-price">
-            <span class="amount">PKR 85,000</span>
-            <span class="per">/ person</span>
-          </div>
-        </div>
-        <div class="pkg-body">
-          <div class="duration">⏱ 10 Nights · 11 Days</div>
-          <ul class="pkg-details">
-            <li><span class="di">🚌</span><span>Islamabad → Hunza → Skardu → Khunjerab → Islamabad</span></li>
-            <li><span class="di">🏨</span><span>10 nights hotel accommodation + 2 nights luxury camping</span></li>
-            <li><span class="di">🧭</span><span>Professional PTDC-certified mountain guide throughout</span></li>
-            <li><span class="di">🍽️</span><span>Breakfast and dinner included daily</span></li>
-            <li><span class="di">📷</span><span>Photo stops: Attabad Lake, Khunjerab Pass, Passu Cones</span></li>
-            <li><span class="di">🛡️</span><span>Basic travel insurance included</span></li>
-          </ul>
-        </div>
-        <div class="pkg-footer">
-          <a href="contact.html" class="book-btn">Book This Package →</a>
-        </div>
-      </div>
+				setExpanded(false);
 
-      <!-- Package 2: Heritage Trail -->
-      <div class="pkg-card" data-cat="heritage">
-        <div class="pkg-header heritage">
-          <span class="pkg-badge badge-budget">💚 Budget Friendly</span>
-          <span class="pkg-icon">🏛️</span>
-          <h3>Heritage Trail</h3>
-          <div class="pkg-dates">📅 2 May – 8 May 2026</div>
-          <div class="pkg-price">
-            <span class="amount">PKR 45,000</span>
-            <span class="per">/ person</span>
-          </div>
-        </div>
-        <div class="pkg-body">
-          <div class="duration">⏱ 6 Nights · 7 Days</div>
-          <ul class="pkg-details">
-            <li><span class="di">🚌</span><span>Lahore → Multan → Mohenjo-daro → Karachi</span></li>
-            <li><span class="di">🏨</span><span>6 nights boutique heritage hotels</span></li>
-            <li><span class="di">🧭</span><span>Certified archaeologist / historian guide</span></li>
-            <li><span class="di">🍽️</span><span>All meals included (breakfast, lunch, dinner)</span></li>
-            <li><span class="di">🎟️</span><span>All UNESCO World Heritage site entry tickets covered</span></li>
-            <li><span class="di">📖</span><span>Exclusive access to Lahore Fort private sections</span></li>
-          </ul>
-        </div>
-        <div class="pkg-footer">
-          <a href="contact.html" class="book-btn">Book This Package →</a>
-        </div>
-      </div>
+				toggle.addEventListener("click", () => {
+					const expanded =
+						toggle.getAttribute("aria-expanded") === "true";
+					setExpanded(!expanded);
+				});
 
-      <!-- Package 3: Luxury -->
-      <div class="pkg-card" data-cat="luxury">
-        <div class="pkg-header luxury">
-          <span class="pkg-badge badge-premium">💜 Premium</span>
-          <span class="pkg-icon">💎</span>
-          <h3>Luxury Pakistan Experience</h3>
-          <div class="pkg-dates">📅 10 Jun – 22 Jun 2026</div>
-          <div class="pkg-price">
-            <span class="amount">PKR 175,000</span>
-            <span class="per">/ person</span>
-          </div>
-        </div>
-        <div class="pkg-body">
-          <div class="duration">⏱ 12 Nights · 13 Days</div>
-          <ul class="pkg-details">
-            <li><span class="di">✈️</span><span>Private charter flights Islamabad–Skardu–Karachi included</span></li>
-            <li><span class="di">🏨</span><span>5-star resorts and boutique luxury hotels at every stop</span></li>
-            <li><span class="di">🧭</span><span>Dedicated personal concierge and bilingual guide</span></li>
-            <li><span class="di">🍽️</span><span>Fine dining — all meals, including private dinners</span></li>
-            <li><span class="di">🛻</span><span>Private air-conditioned 4×4 Land Cruiser throughout</span></li>
-            <li><span class="di">🛡️</span><span>Comprehensive travel & medical insurance included</span></li>
-          </ul>
-        </div>
-        <div class="pkg-footer">
-          <a href="contact.html" class="book-btn">Book This Package →</a>
-        </div>
-      </div>
-
-      <!-- Package 4: Adventure -->
-      <div class="pkg-card" data-cat="adventure">
-        <div class="pkg-header adventure">
-          <span class="pkg-badge badge-thrill">💙 Thrill Seeker</span>
-          <span class="pkg-icon">🧗</span>
-          <h3>Adventure Seeker</h3>
-          <div class="pkg-dates">📅 18 Jul – 30 Jul 2026</div>
-          <div class="pkg-price">
-            <span class="amount">PKR 65,000</span>
-            <span class="per">/ person</span>
-          </div>
-        </div>
-        <div class="pkg-body">
-          <div class="duration">⏱ 12 Nights · 13 Days</div>
-          <ul class="pkg-details">
-            <li><span class="di">🧗</span><span>Rock climbing and via ferrata at Fairy Meadows base</span></li>
-            <li><span class="di">🚣</span><span>Class IV white water rafting on Kunhar River, Kaghan</span></li>
-            <li><span class="di">⛺</span><span>8 nights wilderness camping under open skies</span></li>
-            <li><span class="di">🥾</span><span>10–14 km trekking routes daily with altitude training</span></li>
-            <li><span class="di">🛡️</span><span>Full safety gear, helmets, harnesses all provided</span></li>
-            <li><span class="di">🏥</span><span>First-aid trained guide and emergency protocol included</span></li>
-          </ul>
-        </div>
-        <div class="pkg-footer">
-          <a href="contact.html" class="book-btn">Book This Package →</a>
-        </div>
-      </div>
-
-      <!-- Package 5: Family -->
-      <div class="pkg-card" data-cat="family">
-        <div class="pkg-header family">
-          <span class="pkg-badge badge-family">❤️ Family Special</span>
-          <span class="pkg-icon">👨‍👩‍👧‍👦</span>
-          <h3>Family Fun Pakistan</h3>
-          <div class="pkg-dates">📅 5 Aug – 13 Aug 2026</div>
-          <div class="pkg-price">
-            <span class="amount">PKR 120,000</span>
-            <span class="per">/ family (4)</span>
-          </div>
-        </div>
-        <div class="pkg-body">
-          <div class="duration">⏱ 8 Nights · 9 Days</div>
-          <ul class="pkg-details">
-            <li><span class="di">🎡</span><span>Islamabad Zoo, Margalla Hills nature trail & Pakistan Monument</span></li>
-            <li><span class="di">🏊</span><span>Keenjhar Lake boating, picnic and sunset cruise</span></li>
-            <li><span class="di">🏨</span><span>Family suites with interconnecting rooms, 8 nights</span></li>
-            <li><span class="di">🧒</span><span>Child-safe activities, kid-friendly dining throughout</span></li>
-            <li><span class="di">🚗</span><span>Spacious air-conditioned family van with child seats</span></li>
-            <li><span class="di">📸</span><span>Complimentary family photoshoot at 2 locations</span></li>
-          </ul>
-        </div>
-        <div class="pkg-footer">
-          <a href="contact.html" class="book-btn">Book This Package →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- INCLUSIONS -->
-  <div class="inclusions">
-    <h2>What's Always Included</h2>
-    <p>Every package comes with these essentials as standard</p>
-    <div class="inc-grid">
-      <div class="inc-item"><div class="inc-icon">🧭</div><h4>Expert Guide</h4><p>PTDC-certified local guides on every tour</p></div>
-      <div class="inc-item"><div class="inc-icon">🏨</div><h4>Accommodation</h4><p>Handpicked hotels matching the package tier</p></div>
-      <div class="inc-item"><div class="inc-icon">🚌</div><h4>Transportation</h4><p>AC vehicles with experienced drivers</p></div>
-      <div class="inc-item"><div class="inc-icon">🛡️</div><h4>Basic Insurance</h4><p>Travel insurance for the full trip duration</p></div>
-      <div class="inc-item"><div class="inc-icon">📞</div><h4>24/7 Support</h4><p>Our team is reachable any time during your trip</p></div>
-      <div class="inc-item"><div class="inc-icon">🗺️</div><h4>Detailed Itinerary</h4><p>Full day-by-day plan sent before departure</p></div>
-    </div>
-  </div>
-
-  <!-- HOW TO BOOK -->
-  <div class="how-section">
-    <h2>How to Book</h2>
-    <p>Simple 4-step process — from interest to adventure in under 48 hours</p>
-    <div class="how-grid">
-      <div class="how-step">
-        <div class="how-num">1</div>
-        <h4>Choose a Package</h4>
-        <p>Browse our packages above and pick the one that fits your budget, interests, and travel dates.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">2</div>
-        <h4>Contact Us</h4>
-        <p>Fill in our contact form with your package name, travel dates, and group size. We respond within 24 hours.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">3</div>
-        <h4>Pay Deposit</h4>
-        <p>Confirm your booking with a 30% deposit via bank transfer. Balance is due 7 days before departure.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">4</div>
-        <h4>Pack & Explore!</h4>
-        <p>We send you a full packing guide, itinerary, and emergency contacts. Then just show up and enjoy.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-logo">🌍 Explore Pakistan</span>
-    <p>Packages page — Developed by <strong style="color:var(--gold)">Member 2</strong> | DevOps Assignment 02, Spring 2026</p>
-    <p>© 2026 Explore Pakistan. All rights reserved.</p>
-  </footer>
-
-  <script>
-    function filterPkg(btn, cat) {
-      document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.pkg-card').forEach(card => {
-        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
-      });
-    }
-  </script>
-
-</body>
+				const year = document.getElementById("year");
+				if (year) year.textContent = String(new Date().getFullYear());
+			})();
+		</script>
+	</body>
 </html>
